@@ -6,6 +6,7 @@ Created on Thu Apr 16 09:23:51 2015
 """
 
 from funcoes import *
+import matplotlib.pyplot as plt
 
 x = open("alimentos.csv", encoding="latin1")
 x = x.readlines()
@@ -30,14 +31,14 @@ for i in range (len(y)):
     y[i] = y[i].strip()
     linha = y[i].split(",")
     if i == 1:
-        pessoa[linha[0]] = [linha[1],linha[2],linha[3],linha[4],linha[5]]
+        pessoa = y[i].split(",")
     if i > 2:
         if linha[0] not in comidas:    
             comidas[linha[0]] = [[linha[1],linha[2]]]
         else:
             comidas[linha[0]].append([linha[1],linha[2]])
 #print(pessoa)
-print(comidas)
+#print(comidas)
 calorias = 0
 proteinas = 0
 carboidratos = 0 
@@ -68,7 +69,29 @@ for data in comidas:
     listapro.append(proteinas)
     listagor.append(gorduras)
     listacar.append(carboidratos)
-    
+
+imc = CalculaIMC(float(pessoa[2]),float(pessoa[4])) # calcula o imc da pessoa e fala a situação da mesma
+print(imc)
+
+y = [0]*(len(listacal)//2)
+x = [0]*(len(listacal)//2)
+
+for i in range (len(listacal)):
+    if i%2 != 0:
+        y.append(listacal[i])
+    else:
+        x.append(listacal[i])
+        
+
+plt.plot(x,y)
+plt.axis([0,500,x[0],x[-1]])
+plt.ylabel("Calorias")
+plt.xlabel("Data")
+plt.title(r'Calorias')
+plt.show()
+
+
+
     
 
 
