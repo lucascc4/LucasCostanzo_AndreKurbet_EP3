@@ -7,6 +7,7 @@ Created on Thu Apr 16 09:23:51 2015
 
 from funcoes import *
 import matplotlib.pyplot as plt
+import datetime
 
 x = open("alimentos.csv", encoding="latin1")
 x = x.readlines()
@@ -73,22 +74,59 @@ for data in comidas:
 imc = CalculaIMC(float(pessoa[2]),float(pessoa[4])) # calcula o imc da pessoa e fala a situação da mesma
 print(imc)
 
+
+
+
+#calorias_diarias = 0
+#if pessoa[3] == "M":
+#    calorias_diarias_homem = CalculaHBhomem(float(pessoa[2]),float(pessoa[4]),float(pessoa[1]))
+#    caloria_diarias += calorias_diarias_homem
+#else:
+#    calorias_diarias_mulher = CalculaHBmulher(float(pessoa[2]),float(pessoa[4]),float(pessoa[1]))
+#    calorias_diarias += calorias_diarias_mulher
+
+#print(calorias_diarias)
+    
+    
+    
 y = [0]*(len(listacal)//2)
-x = [0]*(len(listacal)//2)
+x = []
+dias = []
 
 for i in range (len(listacal)):
     if i%2 != 0:
         y.append(listacal[i])
     else:
-        x.append(listacal[i])
-        
+        dt = listacal[i].split("/")
+        #print(dt)
+        #dt_time = datetime.datetime()
+        dia = int(dt[0])
+        mes = int(dt[1])
+        ano = int(dt[2])
+        #dias.append(dia)
+        data = datetime.date(ano,mes,dia)
+        dias.append(data)
+        print(data)
+        #x.append(data)
+dias_ordenados = sorted(dias)
+#print(dias_ordenados)
+for i in range (len(dias)):
+    x.append(dias_ordenados[i])
+    #dias_ordenados = sorted(dias)
+    #print(dias)
+    #data = datetime.date(ano,mes,dias_ordenados[i])
+    #print(data)
 
 plt.plot(x,y)
-plt.axis([0,500,x[0],x[-1]])
-plt.ylabel("Calorias")
-plt.xlabel("Data")
-plt.title(r'Calorias')
+plt.axis([x[0],x[-1],0,y[-1]])
+plt.ylabel("calorias")
+plt.xlabel("data")
+plt.title(r'calorias')
 plt.show()
+        
+        
+
+
 
 
 
