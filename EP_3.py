@@ -40,6 +40,13 @@ for i in range (len(y)):
             comidas[linha[0]].append([linha[1],linha[2]])
 #print(pessoa)
 #print(comidas)
+            
+datas_dicionario = []
+for i in comidas:
+    datas_dicionario.append(i)  
+    
+
+            
 calorias = 0
 proteinas = 0
 carboidratos = 0 
@@ -54,7 +61,7 @@ for data in comidas:
     listapro.append(data)
     listagor.append(data)
     listacar.append(data)
-   # print(comidas[data])
+    #print(comidas[data])
     for i in comidas[data]:
         if i[0] in tabela:
             #print(tabela[i[0]])
@@ -75,6 +82,16 @@ imc = CalculaIMC(float(pessoa[2]),float(pessoa[4])) # calcula o imc da pessoa e 
 print(imc)
 
 
+listacal_dict = {}
+for i in range(len(listacal)-1):
+    if i == 0:
+        listacal_dict[listacal[0]] = listacal[1]
+    if i%2 != 0:
+        listacal_dict[listacal[i+1]] = listacal[i+2]
+print(listacal_dict)
+        
+
+
 
 
 #calorias_diarias = 0
@@ -89,40 +106,39 @@ print(imc)
     
     
     
-y = [0]*(len(listacal)//2)
-x = []
+calorias_plot = []
 dias = []
+datas = []
 
 for i in range (len(listacal)):
-    if i%2 != 0:
-        y.append(listacal[i])
-    else:
-        dt = listacal[i].split("/")
-        #print(dt)
-        #dt_time = datetime.datetime()
-        dia = int(dt[0])
-        mes = int(dt[1])
-        ano = int(dt[2])
-        #dias.append(dia)
-        data = datetime.date(ano,mes,dia)
-        dias.append(data)
-        print(data)
-        #x.append(data)
-dias_ordenados = sorted(dias)
-#print(dias_ordenados)
-for i in range (len(dias)):
-    x.append(dias_ordenados[i])
-    #dias_ordenados = sorted(dias)
-    #print(dias)
-    #data = datetime.date(ano,mes,dias_ordenados[i])
-    #print(data)
+    if i%2 == 0:   
+        dias.append(listacal[i])
+for i in dias:
+    d = datetime.datetime.strptime(i, "%d/%m/%Y").strftime("%d/%m/%Y")
+    datas.append(d)
 
-plt.plot(x,y)
-plt.axis([x[0],x[-1],0,y[-1]])
-plt.ylabel("calorias")
-plt.xlabel("data")
-plt.title(r'calorias')
-plt.show()
+dias_ordenados = sorted(datas)
+x = list(range(len(dias_ordenados)))
+y = []
+
+for i in dias_ordenados:
+    print(dias_ordenados[i])
+    if dias_ordenados[i] in listacal_dict:
+        calorias_plot.append(listacal_dict[dias_ordenados[i]])
+print(calorias_plot)
+
+dicionario_dias = dict(zip(dias,calorias_plot))
+print(dicionario_dias)
+
+for i in dias_ordenados:
+    y.append(int(dicionario_dias[i]))
+print(y)
+
+
+
+
+
+
         
         
 
