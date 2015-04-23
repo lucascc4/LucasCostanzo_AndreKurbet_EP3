@@ -64,7 +64,7 @@ for data in comidas:
     #print(comidas[data])
     for i in comidas[data]:
         if i[0] in tabela:
-            #print(tabela[i[0]])
+            #(tabela[i[0]])
             calculacal = (float(tabela[i[0]][1])/100)*float(i[1])
             calculapro = (float(tabela[i[0]][2])/100)*float(i[1])
             calculagor = (float(tabela[i[0]][4])/100)*float(i[1])
@@ -88,7 +88,7 @@ for i in range(len(listacal)-1):
         listacal_dict[listacal[0]] = listacal[1]
     if i%2 != 0:
         listacal_dict[listacal[i+1]] = listacal[i+2]
-print(listacal_dict)
+#print(listacal_dict)
         
 
 
@@ -121,18 +121,18 @@ x = list(range(len(dias_ordenados)))
 y = []
 
 for i in dias_ordenados:
-    if dias_ordenados[i] in listacal_dict:
-        calorias_plot.append(listacal_dict[dias_ordenados[i]])
+    if i in listacal_dict:
+        calorias_plot.append(listacal_dict[i])
 print(calorias_plot)
             
         
 
 dicionario_dias = dict(zip(dias,calorias_plot))
-print(dicionario_dias)
+#print(dicionario_dias)
 
 for i in dias_ordenados:
     y.append(int(dicionario_dias[i]))
-print(y)
+#print(y)
 
 
 
