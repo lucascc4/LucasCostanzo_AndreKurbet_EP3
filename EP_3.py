@@ -102,8 +102,7 @@ print(listacal_dict)
 #    calorias_diarias_mulher = CalculaHBmulher(float(pessoa[2]),float(pessoa[4]),float(pessoa[1]))
 #    calorias_diarias += calorias_diarias_mulher
 
-#print(calorias_diarias)
-    
+#print(calorias_diarias)    
     
     
 calorias_plot = []
@@ -122,10 +121,11 @@ x = list(range(len(dias_ordenados)))
 y = []
 
 for i in dias_ordenados:
-    print(dias_ordenados[i])
     if dias_ordenados[i] in listacal_dict:
         calorias_plot.append(listacal_dict[dias_ordenados[i]])
 print(calorias_plot)
+            
+        
 
 dicionario_dias = dict(zip(dias,calorias_plot))
 print(dicionario_dias)
