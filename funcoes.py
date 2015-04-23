@@ -6,14 +6,15 @@ Created on Tue Apr 14 14:45:48 2015
 """
 #função que calcula a quantidade diária de calorias segundo Harris Benedict para Homens
 def CalculaHBhomem(peso,altura,idade):
-    return 88,36+(13,4*peso)+(4,8*altura)-(5,7*idade)
+    x = 88.36+(13.4*peso)+(4.8*altura)-(5.7*idade)
+    return(x)
 #peso= peso do usuário
 #altura= altura do usuário
 #idade= idade do usuário
     
 #função que calcula a quantidade diária de calorias segundo Harris Benedict para Mulheres
 def CalculaHBmulher(peso,altura,idade):
-    return 447,6+(9,2*peso)+(3,1*altura)-(4,3*idade)
+    return 447.6+(9.2*peso)+(3.1*altura)-(4.3*idade)
 #peso= peso do usuário
 #altura= altura do usuário
 #idade= idade do usuário
@@ -39,5 +40,21 @@ def CalculaIMC(peso,altura):
     if x>=40:
         print("Obesidade Grau 3")   
     return x
+    
+
+
+def TMB(caloria,fator):
+    if fator == "minimo":
+        TMB = caloria*1.2
+    if fator == "baixo":
+        TMB = caloria*1.375
+    if fator== "medio":
+        TMB=caloria*1.55
+    if fator == "alto":
+        TMB=caloria*1.725
+    if fator == "muito alto":
+        TMB=caloria*1.9
+    return (TMB)
+        
    
         
